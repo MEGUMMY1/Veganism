@@ -127,9 +127,8 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 
 	// 로그아웃
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) throws Exception {
+	public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
 	   logger.info("get logout");
-
 	   session.invalidate();
 
 	   return "redirect:/";

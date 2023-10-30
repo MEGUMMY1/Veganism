@@ -124,36 +124,26 @@
 <form id="postFormSubmit" action="">
 	<input type="hidden" name="bno" value="${view.bno}">
 </form>
-
-<!--선택된 요소에 액션값 부여하고, 바로 submit 시키기-->
-<script>
-	function postFormSubmit(num){
-		if(num==1){ // 수정하기
-			$("#postFormSubmit").attr("action","/board/modify?bno=${view.bno}").submit();
-		}else{ // 삭제하기
-			$("#postFormSubmit").attr("action","/board/delete").submit();
-		}
-	}
-</script>
-
 <!-- 댓글 조회 -->
-<div class="container px-4 px-lg-5 reply-div">
 <c:forEach items="${reply}" var="reply">
-	<div class="my-3 p-3 bg-white rounded shadow-sm innerOuter" >
-		<div>
-			<span class="reply_writer"><c:out value="${reply.writer}"/></span>
-			<span class="reply_date">|　 <fmt:formatDate value="${reply.regDate}" pattern="yyyy-MM-dd HH:mm"/></span>
-			<p class="reply_content">${reply.content }</p>
-		</div>
-		<c:if test="${reply.writer == member.userName}">
-			<div style="margin-top : 20px">
-				<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/reply/modify?bno=${view.bno}&amp;rno=${reply.rno}' ">수정</button>
-				<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/reply/delete?bno=${view.bno}&amp;rno=${reply.rno}' ">삭제</button>
+<div class="container px-4 px-lg-5">
+	<div class="innerOuter">
+		<div class="my-3 p-3 bg-white rounded shadow-sm ">
+			<div>
+				<span class="reply_writer"><c:out value="${reply.writer}"/></span>
+				<span class="reply_date">|　 <fmt:formatDate value="${reply.regDate}" pattern="yyyy-MM-dd HH:mm"/></span>
+				<p class="reply_content">${reply.content }</p>
 			</div>
-		</c:if>
+			<c:if test="${reply.writer == member.userName}">
+				<div style="margin-top : 20px">
+					<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/reply/modify?bno=${view.bno}&amp;rno=${reply.rno}' ">수정</button>
+					<button type="button" class="btn btn-sm btn-primary" onclick="location.href='/reply/delete?bno=${view.bno}&amp;rno=${reply.rno}' ">삭제</button>
+				</div>
+			</c:if>
+		</div>
 	</div>
-</c:forEach>
 </div>
+</c:forEach>
 
 <!-- 댓글 작성 -->
 <c:if test="${member.userName != null}">
@@ -190,6 +180,14 @@
 <!-- Footer-->
 <footer class="py-2 bg-primary footer mt-5 mb-0" style="height: 3rem;"/>
 <script>
+	<!--선택된 요소에 액션값 부여하고, 바로 submit 시키기-->
+	function postFormSubmit(num){
+		if(num==1){ // 수정하기
+			$("#postFormSubmit").attr("action","/board/modify?bno=${view.bno}").submit();
+		}else{ // 삭제하기
+			$("#postFormSubmit").attr("action","/board/delete").submit();
+		}
+	}
 	// 빈칸으로 작성버튼 클릭 불가
 	window.addEventListener('load', () => {
 		const forms = document.getElementsByClassName('validation-form');
