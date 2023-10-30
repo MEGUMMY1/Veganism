@@ -148,33 +148,35 @@
 <!-- 댓글 작성 -->
 <c:if test="${member.userName != null}">
 <div class="container px-4 px-lg-5">
-	<div class="my-3 p-3 bg-white rounded shadow-sm innerOuter">
-		<form method="post" action="/reply/write">
-			<div class="row">
-				<div class="col-sm-10">
-					<label class="reply_writer">댓글 작성자</label> <input class="reply_writer" type="text" name="writer" value="${member.userName}" readonly="readonly"/><br />
+	<div class="innerOuter">
+		<div class="my-3 p-3 bg-white rounded shadow-sm innerOuter">
+			<form method="post" action="/reply/write">
+				<div class="row">
+					<div class="col-sm-10">
+						<label class="reply_writer">댓글 작성자</label> <input class="reply_writer" type="text" name="writer" value="${member.userName}" readonly="readonly"/><br />
+					</div>
+					<div class="mb-3">
+						<textarea class="reply_content form-control" rows="5" cols="50" name="content" placeholder="댓글을 입력해주세요" required></textarea>
+						<input class="reply_content" type="hidden" name="bno" value="${view.bno}">
+						<button type="submit" class="btn btn-sm btn-primary" id="btnReplySave" style="margin-left: 15px;">댓글 작성</button>
+					</div>
 				</div>
-				<div class="mb-3">
-					<textarea class="reply_content form-control" rows="5" cols="50" name="content" placeholder="댓글을 입력해주세요" required></textarea>
-					<input class="reply_content" type="hidden" name="bno" value="${view.bno}">
-					<button type="submit" class="btn btn-sm btn-primary" id="btnReplySave" style="margin-left: 15px;">댓글 작성</button>
-				</div>
-			</div>
-		</form>
-		</c:if>
+			</form>
+			</c:if>
 
-		<c:if test="${member.userName == null}">
-			<div class="container position-relative">
-				<div class="row justify-content-center">
-					<div class="col-xl-6">
-						<div class="text-center">
-							<p>로그인을 하셔야 댓글을 작성할 수 있습니다.</p>
+			<c:if test="${member.userName == null}">
+				<div class="container position-relative">
+					<div class="row justify-content-center">
+						<div class="col-xl-6">
+							<div class="text-center">
+								<p>로그인을 하셔야 댓글을 작성할 수 있습니다.</p>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</c:if>
-		<!-- 댓글 끝 -->
+			</c:if>
+			<!-- 댓글 끝 -->
+		</div>
 	</div>
 </div>
 <!-- Footer-->
