@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.mappers.postMapper">
+
+	<!-- 후기 작성 -->
+	<insert id="write" parameterType="com.board.domain.PostVO">
+		insert into
+			tbl_post(bno, writer, title, content, regDate, rating)
+		values(#{bno}, #{writer}, #{title}, #{content}, NOW(), #{rating})
+	</insert>
+
+	<select id="view" parameterType="com.board.domain.PostVO" resultType="com.board.domain.PostVO">
+		select
+			pno, bno, title, writer, content, regDate
+		from tbl_post
+		where bno = #{bno}
+		  and pno = #{pno}
+	</select>
+
+	<!-- 게시물 총 갯수 -->
+	<select id="count" resultType="int">
+		select count(bno) from tbl_post WHERE bno IN (SELECT bno FROM tbl_board)
+	</select>
+
+	<!--별점 평균-->
+	<select id="getAllRatings" parameterType="int" resultType="java.lang.Double">
+		select rating
+		from tbl_post
+		where bno = #{bno}
+	</select>
+
+	<!-- 게시물 목록 + 페이징 + 검색 -->
+	<select id="listPageSearch" parameterType="hashMap" resultType="com.board.domain.PostVO">
+		select
+			bno, pno, title, writer, regDate,content,rating
+		from tbl_post WHERE bno IN (SELECT bno FROM tbl_board)
+
+		order by pno desc
+		limit #{displayPost}, #{postNum}
+	</select>
+
+</mapper>

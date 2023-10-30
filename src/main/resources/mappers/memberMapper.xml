@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.mappers.memberMapper">
+
+    <!-- 회원 가입 -->
+    <insert id="register">
+       insert into tbl_member(userId, userPass, userName, gender, level, phone)
+        values(#{userId}, #{userPass}, #{userName}, #{gender}, #{level}, #{phone})
+    </insert>
+
+	<!-- 아이디 확인 -->
+	<select id="idCheck" resultType="com.board.domain.MemberVO">
+		select userId, userPass, userName, level, phone from tbl_member
+		where userId = #{userId}
+	</select>
+
+	<!--닉네임 확인-->
+	<select id="nameCheck" resultType="com.board.domain.MemberVO">
+		select userName from tbl_member
+		where userName = #{userName}
+	</select>
+
+    <!-- 로그인 -->
+	<select id="login" resultType="com.board.domain.MemberVO">
+	   select
+	       userId, userName, userPass
+	   from
+	       tbl_member
+	   where userId = #{userId} and userPass = #{userPass}
+	</select>
+
+	<!-- 회원정보 수정 -->
+	<update id="modify" parameterType="com.board.domain.MemberVO">
+	   update tbl_member
+	   set
+		   userId = #{userId},
+		   userName = #{userName},
+	       userPass = #{userPass},
+	       level = #{level},
+	       phone = #{phone}
+	   where userId = #{userId}
+	</update>
+
+	<!-- 회원정보 삭제 -->
+	<delete id="withdrawal">
+		DELETE FROM tbl_member WHERE userId = #{userId}
+	</delete>
+
+</mapper>
