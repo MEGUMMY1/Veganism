@@ -31,14 +31,8 @@ public class PostDAOImpl implements PostDAO{
 
     // 게시물 목록 + 페이징 + 검색
     @Override
-    public List<PostVO> listPageSearch(int displayPost, int postNum) throws Exception {
-
-        HashMap<String, Object> data = new HashMap<String, Object>();
-
-        data.put("displayPost", displayPost);
-        data.put("postNum", postNum);
-
-        return sql.selectList(namespace + ".listPageSearch",data);
+    public List<PostVO> listPageSearch(int bno) throws Exception {
+        return sql.selectList(namespace + ".listPageSearch", bno);
     }
 
     public List<Double> getAllRatings(int bno) {

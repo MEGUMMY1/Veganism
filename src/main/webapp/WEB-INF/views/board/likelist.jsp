@@ -36,20 +36,18 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>번호</th>
+                        <th>　</th>
                         <th>제목</th>
                         <th>작성일</th>
                         <th>작성자</th>
-                        <th>조회수</th>
                     </tr>
                 </thead>
                 <c:forEach var="like" items="${likeList}">
                     <tr>
-                        <td>${like.bno}</td>
+                        <td>　</td>
                         <td><a href="/board/view?bno=${like.bno}" style="text-decoration: none; color: #0f0f0f; font-weight: bold">${like.boardVO.title}</a></td>
                         <td><fmt:formatDate value="${like.boardVO.regDate}" pattern="yyyy-MM-dd" /></td>
                         <td>${like.boardVO.writer}</td>
-                        <td>${like.boardVO.viewCnt}</td>
                     </tr>
                 </c:forEach>
             </table>

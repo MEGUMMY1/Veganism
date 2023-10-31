@@ -30,6 +30,7 @@
 						<input type="password" class="member-form" id="userPass" name="userPass" placeholder="" value="" required/>
 					</div>
 					<p class="passmsg member-msg">비밀번호를 입력해주세요.</p>
+					<p class="forgotpassword" onclick="location.href='resetpassword'" ><u>비밀번호를 잊으셨나요?</u></p>
 				</div>
 				<div class="member-btn-div">
 					<button class="member-submit-btn" type="submit" id="submit">로그인</button>

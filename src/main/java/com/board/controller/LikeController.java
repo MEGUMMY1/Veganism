@@ -56,18 +56,5 @@ public class LikeController {
         return likeService.selectLike(likeVO);
     }
 
-    // 회원 정보 수정 전 인증
-    @RequestMapping(value = "/checkpassword", method = RequestMethod.POST)
-    @ResponseBody
-    public String checkPassword(@RequestParam("password") String password, HttpSession session) {
-        // 비밀번호 확인 로직
-        MemberVO member = (MemberVO) session.getAttribute("member");
-        String sessionPass = member.getUserPass();
-        // 비밀번호 검증시 암호화된 비밀번호와 일치하는지 확인
-        if (passwordEncoder.matches(password, sessionPass)) {
-            return "success";
-        } else {
-            return "failure";
-        }
-    }
+
 }

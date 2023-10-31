@@ -47,8 +47,14 @@ public class MemberDAOImpl implements MemberDAO {
 
 	//회원 정보 수정
 	@Override
-	public void modify(MemberVO vo) throws Exception{
+	public void modify(MemberVO vo) throws Exception {
 		sql.update(namespace + ".modify", vo);
+	}
+
+	// 비밀번호 재설정
+	@Override
+	public void resetpassword(MemberVO vo) throws Exception {
+		sql.update(namespace + ".resetpassword", vo);
 	}
 
 	//회원 탈퇴

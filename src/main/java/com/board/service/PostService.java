@@ -13,7 +13,7 @@ public interface PostService {
     public int count() throws Exception;
 
     // 게시물 목록 + 페이징 + 검색
-    public List<PostVO> listPageSearch(int displayPost, int postNum) throws Exception;
+    public List<PostVO> listPageSearch(int bno) throws Exception;
 
     public double calculateAverageRating(List<Double> ratings) throws Exception;
 

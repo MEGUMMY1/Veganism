@@ -43,6 +43,14 @@
 	   where userId = #{userId}
 	</update>
 
+	<!-- 비밀번호 재설정 -->
+	<update id="resetpassword" parameterType="com.board.domain.MemberVO">
+		update tbl_member
+		set
+			userPass = #{userPass}
+		where userId = #{userId} AND phone = #{phone}
+	</update>
+
 	<!-- 회원정보 삭제 -->
 	<delete id="withdrawal">
 		DELETE FROM tbl_member WHERE userId = #{userId}

@@ -32,8 +32,8 @@ public class PostServiceImpl implements PostService{
 
     // 게시물 목록 + 페이징 + 검색
     @Override
-    public List<PostVO> listPageSearch(int displayPost, int postNum) throws Exception {
-        return  dao.listPageSearch(displayPost, postNum);
+    public List<PostVO> listPageSearch(int bno) throws Exception {
+        return  dao.listPageSearch(bno);
     }
 
     @Override
