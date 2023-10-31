@@ -38,7 +38,7 @@
 		from tbl_post WHERE bno IN (SELECT bno FROM tbl_board)
 
 		order by pno desc
-		limit #{displayPost}, #{postNum}
+		limit #{bno}
 	</select>
 
 </mapper>

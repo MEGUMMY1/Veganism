@@ -89,6 +89,38 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 		dao.modify(vo);
 	}
 
+	// 비밀번호 변경 전 회원정보 확인
+	@Override
+	public boolean checkinfo(String userId, String phone) throws Exception {
+		MemberVO vo = dao.idCheck(userId);
+
+		// 사용자 정보가 존재하고, 입력된 전화번호와 사용자의 전화번호가 같으면 true 반환
+		if (vo != null && vo.getPhone() != null && vo.getPhone().equals(phone)) {
+			return true;
+		}
+
+		// 사용자 정보가 일치하지 않으면 false 반환
+		return false;
+	}
+
+	// 비밀번호 재설정
+	@Override
+	public boolean resetpassword(String userId, String newPassword) throws Exception {
+		// 비밀번호 재설정 로직
+		MemberVO vo = dao.idCheck(userId);
+
+		if (vo != null) {
+			// 새 비밀번호 설정 (비밀번호 암호화가 필요합니다)
+			vo.setUserPass(passwordEncoder.encode(newPassword));
+
+			// 변경 내용 저장
+			dao.resetpassword(vo);
+			return true;
+		}
+
+		return false;
+	}
+
 
 	//회원 탈퇴
 	@Override

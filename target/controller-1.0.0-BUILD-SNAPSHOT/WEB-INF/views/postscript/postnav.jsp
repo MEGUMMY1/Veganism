@@ -28,9 +28,6 @@
         <li class="nav-item"><a class="nav-link active" href="../board/listPageSearch?page=1&perPageNum=12&searchType=&keyword=&orderBy=&category=&level=">게시판</a></li>
         <li class="nav-item"><a class="nav-link active" href="../vegan">비건이란</a></li>
         <li class="nav-item"><a class="nav-link active" href="../restaurant">비건식당</a></li>
-        <c:if test="${member != null}">
-          <li class="nav-item"><a class="nav-link active" href="../board/likelist">찜 목록</a></li>
-        </c:if>
       </ul>
       <!-- 로그인 및 마이페이지 메뉴 -->
       <ul class="navbar-nav ml-auto">

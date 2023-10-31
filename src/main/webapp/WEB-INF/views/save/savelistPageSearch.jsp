@@ -36,7 +36,7 @@
     <table class="table table-striped table-hover">
         <thead>
         <tr>
-            <th>번호</th>
+            <th>　</th>
             <th>제목</th>
             <th>작성일</th>
             <th>작성자</th>
@@ -47,7 +47,7 @@
         <c:forEach items="${savelist}" var="savelist">
             <c:if test="${savelist.writer eq member.userName}">
                 <tr>
-                    <td>${savelist.bno}</td>
+                    <td>　</td>
                     <td>
                         <a href="/save/saveview?bno=${savelist.bno}" style="text-decoration: none; color: #0f0f0f; font-weight: bold">${savelist.title}</a>
                     </td>

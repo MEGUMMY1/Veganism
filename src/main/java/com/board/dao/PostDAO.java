@@ -12,7 +12,7 @@ public interface PostDAO {
     public int count() throws Exception;
 
     //게시물 목록 + 페이징 + 검색
-    public List<PostVO> listPageSearch(int displayPost, int postNum) throws Exception;
+    public List<PostVO> listPageSearch(int bno) throws Exception;
 
     List<Double> getAllRatings(int bno);
 }

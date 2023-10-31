@@ -46,11 +46,8 @@ public class PostController {
 
     // 게시물 목록 + 페이징 추가 + 검색
     @RequestMapping(value = "/postlist", method = RequestMethod.GET)
-    public void getListPageSearch( HttpServletRequest req,Model model, @RequestParam("bno") int bno) throws Exception {
-        Page page = new Page();
-
-        List<PostVO> postlist = null;
-        postlist = service.listPageSearch(page.getDisplayPost(), page.getPostNum());
+    public void  getListPageSearch( HttpServletRequest req,Model model, @RequestParam("bno") int bno) throws Exception {
+        List<PostVO> postlist = service.listPageSearch(bno);
 
         model.addAttribute("postlist", postlist);
 
@@ -63,6 +60,7 @@ public class PostController {
         float averagerating = (float) service.calculateAverageRating(ratings);
         session.setAttribute("averagerating", averagerating);
         service.updateAveragerating(bno, averagerating);
+        //return "postlist";
     }
 
 }

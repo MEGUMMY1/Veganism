@@ -28,6 +28,12 @@ public interface MemberService {
 	//회원 정보 수정
 	public void modify(MemberVO vo) throws Exception;
 
+	// 비밀번호 변경 전 회원정보 확인
+	public boolean checkinfo(String userId, String phone) throws Exception;
+
+	// 비밀번호 재설정
+	public boolean resetpassword(String userId, String newPassword) throws Exception;
+
 	//회원 탈퇴
 	public void withdrawal(MemberVO vo) throws Exception;
 

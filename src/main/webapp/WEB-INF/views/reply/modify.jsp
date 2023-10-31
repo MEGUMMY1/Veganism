@@ -40,7 +40,7 @@
 				<div>
 					<span class="reply_writer"><c:out value="${reply.writer}"/>　 |</span>
 					<span class="reply_date"><fmt:formatDate value="${reply.regDate}" pattern="yyyy-MM-dd HH:mm"/></span>
-					<p><textarea name="content" cols="150" rows="5" required>${reply.content}</textarea></p>
+					<p><textarea name="content" cols="50" rows="5" required>${reply.content}</textarea></p>
 				</div>
 				<div style="margin-top : 20px">
 					<input type="hidden" name="writer" value="${reply.writer}">

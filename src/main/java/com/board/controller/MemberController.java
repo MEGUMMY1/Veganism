@@ -12,6 +12,8 @@ import com.board.service.LikeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -156,8 +158,24 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 	   return "redirect:/";
 	}
 
+	@RequestMapping(value = "/resetpassword", method = RequestMethod.GET)
+	public void getResetpassword() {
+		logger.info("get resetpassword");
+	}
 
+	// 비밀번호 재설정
+	@RequestMapping(value = "/resetpassword", method = RequestMethod.POST)
+	public String resetpassword(@RequestParam("newPassword") String newPassword, HttpSession session) throws Exception {
+		// 세션에서 아이디를 가져옴
+		String userId = (String) session.getAttribute("userId");
 
+		// 아이디를 사용하여 비밀번호를 변경하는 로직 수행
+		if (userId != null && service.resetpassword(userId, newPassword)) {
+			return "redirect:/member/login";
+		} else {
+			return "failure";
+		}
+	}
 
 	// 회원 탈퇴 get
 	@RequestMapping(value = "/withdrawal", method = RequestMethod.GET)

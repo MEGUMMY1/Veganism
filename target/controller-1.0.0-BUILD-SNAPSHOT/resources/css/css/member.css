@@ -51,13 +51,18 @@ body {
 .input-container {
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 340px;
 }
 
 .member-div{
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
+}
+
+.forgotpassword{
+    margin-top: 1rem;
+    color: #3A8C5D;
 }
 
 .member-form{
@@ -215,6 +220,10 @@ body {
 
     .member-form{
         width: 100%;
+    }
+
+    .input-container{
+        width: 90%;
     }
 
 }
