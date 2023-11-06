@@ -81,6 +81,7 @@ public interface BoardService {
 	// 찜 상위 8개 홈화면 출력
 	public List<BoardVO> getPopularBoardList() throws Exception;
 
-	// 카테고리
+	// 회원 별 작성 게시글 목록
+	public List<BoardVO> getPostsByUserId(String userId) throws Exception;
 }
 

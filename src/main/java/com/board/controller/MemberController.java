@@ -206,4 +206,19 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 
 		return "redirect:/";
 	}
+
+	// mypage
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public String getMypage(Model model,HttpSession session) throws Exception {
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		String userName = member.getUserName();
+
+		// 사용자가 작성한 게시글 목록 조회
+		List<BoardVO> userPosts = boardService.getPostsByUserId(userName);
+		model.addAttribute("userPosts", userPosts);
+
+		return "/member/mypage";
+	}
+
+
 }

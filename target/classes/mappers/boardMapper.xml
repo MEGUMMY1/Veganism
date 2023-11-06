@@ -287,4 +287,12 @@
 		SET averagerating = #{averagerating}
 		WHERE bno = #{bno}
 	</update>
+
+	<!-- 사용자가 작성한 게시글 가져오기 -->
+	<select id="selectPostsByUserId" resultType="com.board.domain.BoardVO">
+		SELECT * FROM tbl_board WHERE writer = #{writer} and status='Y'
+		ORDER BY bno DESC
+	</select>
+
+
 </mapper>

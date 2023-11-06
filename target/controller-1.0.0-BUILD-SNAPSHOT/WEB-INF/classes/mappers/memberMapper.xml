@@ -25,7 +25,7 @@
     <!-- 로그인 -->
 	<select id="login" resultType="com.board.domain.MemberVO">
 	   select
-	       userId, userName, userPass
+	       userId, userName, userPass, regDate, level
 	   from
 	       tbl_member
 	   where userId = #{userId} and userPass = #{userPass}
@@ -55,5 +55,6 @@
 	<delete id="withdrawal">
 		DELETE FROM tbl_member WHERE userId = #{userId}
 	</delete>
+
 
 </mapper>

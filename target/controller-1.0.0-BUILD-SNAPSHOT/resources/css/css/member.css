@@ -15,6 +15,74 @@ body {
     user-select: none;
 }
 
+.mypage-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: #FFFFFF;
+}
+
+.mypage-left{
+    width: 30%;
+    margin-top: 100px;
+    padding: 50px 60px;
+}
+
+.mypage-right{
+    width: 70%;
+    margin-top: 100px;
+    padding: 50px 40px;
+}
+
+.left-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-bottom: 2rem;
+}
+
+.list-item{
+    text-align: left;
+    margin-bottom: 10px;
+    margin-left: 80px;
+    text-decoration: none;
+    color: #000;
+}
+
+.list-item:hover{
+    color: #3A8C5D;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.info-box{
+    width: 800px;
+    height: 150px;
+    background-color: #3A8C5D;
+    color: #FFFFFF;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.info-box2{
+    display: flex;
+}
+
+.info-txt{
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+
+.info-level-box{
+    width: 350px;
+    height: 100px;
+    background-color: #FFF;
+    padding: 10px 30px;
+}
+
 .member-container{
     width: 100%;
     height: 90%;
@@ -226,6 +294,30 @@ body {
         width: 90%;
     }
 
+    .info-box {
+        display: none;
+    }
+
+    .mypage-container {
+        flex-direction: column;
+    }
+
+    .mypage-left {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .info-box {
+        display: none;
+    }
+
+    .writeList{
+        max-width: 350px;
+    }
+    .mypage-right{
+        margin-top: 0;
+        padding: 15px;
+    }
 }
 
 .input-form {
@@ -241,4 +333,26 @@ body {
     -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
     box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+}
+
+#deleteForm {
+    margin: 20px 0;
+}
+
+#deleteButton {
+    background-color: #3A8C5D;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+#deleteButton:hover {
+    background-color: #2E5955;
+}
+
+.writeList{
+    width: 800px;
 }

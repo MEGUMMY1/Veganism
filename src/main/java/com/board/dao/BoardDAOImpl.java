@@ -1,5 +1,6 @@
 package com.board.dao;
 
+import java.lang.reflect.Parameter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -191,6 +192,12 @@ public class BoardDAOImpl implements BoardDAO {
 		boardVO.setBno(bno);
 		boardVO.setAveragerating(averagerating);
 		sql.update(namespace + ".updateAveragerating", boardVO);
+	}
+
+	// 회원 별 작성 게시글 목록
+	@Override
+	public List<BoardVO> selectPostsByUserId(String userId) throws Exception {
+		return sql.selectList(namespace + ".selectPostsByUserId", userId);
 	}
 
 

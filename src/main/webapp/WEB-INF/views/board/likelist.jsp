@@ -33,6 +33,7 @@
         </div>
     </c:if>
     <c:if test="${not empty likeList}">
+        <div style="height: 400px; overflow-y: scroll;">
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -56,7 +57,7 @@
 </div>
 </body>
 <!-- Footer-->
-<footer class="py-2 bg-primary footer" style="height: 3rem; margin-top: 6rem;"/>
+<footer class="py-2 bg-primary footer" style="height: 3rem; margin-top: 4rem;"/>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </html>
