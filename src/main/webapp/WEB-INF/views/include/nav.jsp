@@ -19,7 +19,7 @@
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 		<div class="collapse navbar-collapse justify-content-around" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-				<li class="nav-item"><a class="nav-link active" href="../board/listPageSearch?page=1&perPageNum=12&searchType=&keyword=&orderBy=&category=&level=">게시판</a></li>
+				<li class="nav-item"><a class="nav-link active" href="../board/listPageSearch?page=1&perPageNum=12&searchType=&keyword=&orderBy=&category=&level=">비건레시피</a></li>
 				<li class="nav-item"><a class="nav-link active" href="../vegan">비건이란</a></li>
 				<li class="nav-item"><a class="nav-link active" href="../restaurant">비건식당</a></li>
 			</ul>
@@ -35,12 +35,8 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle active" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="../member/mypage">마이페이지</a></li>
 								<li><a class="dropdown-item" href="../member/logout">로그아웃</a></li>
-								<li><a class="dropdown-item" href="../board/likelist">찜 목록</a></li>
-								<li><a class="dropdown-item" href="../save/savelistPageSearch?page=1&perPageNum=12&searchType=&keyword=&sort=">임시저장</a></li>
-								<li><hr class="dropdown-divider" /></li>
-								<li><a class="dropdown-item" href="../member/modify">개인정보변경</a></li>
-								<li><a class="dropdown-item" href="../member/withdrawal">회원탈퇴</a></li>
 							</ul>
 						</li>
 					</c:otherwise>

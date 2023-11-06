@@ -1,5 +1,6 @@
 package com.board.controller;
 
+import com.board.domain.BoardVO;
 import com.board.domain.LikeVO;
         import com.board.domain.MemberVO;
         import com.board.service.BoardService;
@@ -10,9 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.http.ResponseEntity;
         import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
         import org.springframework.stereotype.Controller;
-        import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
         import javax.servlet.http.HttpSession;
+import java.awt.print.Pageable;
+import java.util.List;
 
 @Controller
 public class CheckController {
@@ -22,6 +26,9 @@ public class CheckController {
 
     @Autowired
     private MemberService service;
+
+    @Autowired
+    private BoardService boardService;
 
     // 회원 정보 수정 전 인증
     @RequestMapping(value = "/checkpassword", method = RequestMethod.POST)
@@ -50,6 +57,16 @@ public class CheckController {
         } else {
             return "failure";
         }
+    }
+
+    // 마이페이지 內 일괄 삭제
+    @RequestMapping(value = "/deletePosts", method = RequestMethod.POST)
+    public String deletePosts(@RequestParam("selectedPosts") List<Integer> selectedPosts)  throws Exception {
+        for (int postId : selectedPosts) {
+            boardService.delete(postId); // 각 게시글을 삭제하는 서비스 메서드 호출
+        }
+
+        return "redirect:/member/mypage";
     }
 
 

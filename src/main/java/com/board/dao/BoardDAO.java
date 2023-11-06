@@ -86,6 +86,10 @@ public interface BoardDAO {
  public List<BoardVO> getPopularBoardList();
 
  // 게시글의 평균 평점을 업데이트하는 메서드
- void updateAveragerating(int bno, float averagerating) throws Exception ;
+ public void updateAveragerating(int bno, float averagerating) throws Exception ;
+
+ // 회원 별 작성 게시글 목록
+ public List<BoardVO> selectPostsByUserId(String userId) throws Exception ;
+
 
 }

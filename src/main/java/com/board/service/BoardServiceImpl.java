@@ -1,5 +1,6 @@
 package com.board.service;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -168,5 +169,10 @@ public class BoardServiceImpl implements BoardService {
 		return dao.getPopularBoardList();
 	}
 
-	// 카테고리
+	// 회원 별 작성 게시글 목록
+	@Override
+	public List<BoardVO> getPostsByUserId(String userId) throws Exception{
+		return dao.selectPostsByUserId(userId);
+	}
+
 }
