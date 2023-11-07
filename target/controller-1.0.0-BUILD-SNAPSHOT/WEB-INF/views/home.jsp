@@ -78,6 +78,54 @@
 </header>
 <section class="py-4">
     <div class="container px-4 px-lg-5">
+        <c:if test="${not empty member}">
+            <div class="div-main-ranking">
+                <p class="main-ranking1">Recommend</p>
+                <p class="main-ranking2">${member.userName}님 추천 레시피</p>
+            </div>
+            <span class="bar">────────</span>
+            <div class="row row-cols-1 row-cols-md-4 g-3 mb-3">
+                <c:forEach var="board" items="${recommendedBoardList}">
+                    <div class="col cardboard">
+                        <div class="card">
+                            <div class="card-img-div">
+                                <c:choose>
+                                    <c:when test="${!empty board.imgPath}">
+                                        <a href="/board/view?bno=${board.bno}"><img src=" <spring:url value = '/static/upload/${board.imgPath}'/> "class="card-img-top" alt="image" style="height: 10rem;"></a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="/board/view?bno=${board.bno}"><img src="../../../resources/img/thumbnail.png" class="card-img-top" alt="..." style="height: 10rem;"/></a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                            <div class="card-body">
+                                <div class="cardborder">
+                                    <a class="card-title" href="/board/view?bno=${board.bno}" style="text-decoration: none; color: black; font-size: 20px; font-weight: bold;">${board.title}</a>
+                                </div>
+                                <div class="cardborder">
+                                    <p class="card-subtitle">${board.writer}</p>
+                                </div>
+                                <c:if test="${not empty member.userName}">
+                                    <div class="like-container">
+                                  <span class="like-btn" data-bno="${board.bno}">
+                                    <img src="../../../resources/img/like1.png" width="30px">
+                                  </span>
+                                        <span class="unlike-btn d-none" data-bno="${board.bno}">
+                                    <img src="../../../resources/img/like2.png" width="30px">
+                                  </span>
+                                        <span class="like-cnt">${board.likeCnt}</span>
+                                    </div>
+                                </c:if>
+                            </div>
+                            <input type="hidden" id="bno-${board.bno}" value="${board.bno}">
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+            <div style="height: 6rem; width: 100%"></div>
+        </c:if>
+
+
         <div class="div-main-ranking">
             <p class="main-ranking1">Ranking</p>
             <p class="main-ranking2">실시간 인기 레시피</p>
@@ -93,27 +141,27 @@
                                     <a href="/board/view?bno=${board.bno}"><img src=" <spring:url value = '/static/upload/${board.imgPath}'/> "class="card-img-top" alt="image" style="height: 10rem;"></a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="/board/view?bno=${board.bno}"><img src="../../../resources/img/Fooriend.png" class="card-img-top" alt="..." style="height: 10rem;"/></a>
+                                    <a href="/board/view?bno=${board.bno}"><img src="../../../resources/img/thumbnail.png" class="card-img-top" alt="..." style="height: 10rem;"/></a>
                                 </c:otherwise>
                             </c:choose>
                         </div>
                         <div class="card-body">
                             <div class="cardborder">
-                            <a class="card-title" href="/board/view?bno=${board.bno}" style="text-decoration: none; color: black; font-size: 20px; font-weight: bold;">${board.title}</a>
+                                <a class="card-title" href="/board/view?bno=${board.bno}" style="text-decoration: none; color: black; font-size: 20px; font-weight: bold;">${board.title}</a>
                             </div>
                             <div class="cardborder">
-                            <p class="card-subtitle">${board.writer}</p>
+                                <p class="card-subtitle">${board.writer}</p>
                             </div>
                             <c:if test="${not empty member.userName}">
-                            <div class="like-container">
+                                <div class="like-container">
                                   <span class="like-btn" data-bno="${board.bno}">
                                     <img src="../../../resources/img/like1.png" width="30px">
                                   </span>
-                                  <span class="unlike-btn d-none" data-bno="${board.bno}">
+                                    <span class="unlike-btn d-none" data-bno="${board.bno}">
                                     <img src="../../../resources/img/like2.png" width="30px">
                                   </span>
-                                  <span class="like-cnt">${board.likeCnt}</span>
-                            </div>
+                                    <span class="like-cnt">${board.likeCnt}</span>
+                                </div>
                             </c:if>
                         </div>
                         <input type="hidden" id="bno-${board.bno}" value="${board.bno}">

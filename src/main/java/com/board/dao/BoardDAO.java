@@ -91,5 +91,7 @@ public interface BoardDAO {
  // 회원 별 작성 게시글 목록
  public List<BoardVO> selectPostsByUserId(String userId) throws Exception ;
 
+ //추천
+ public BoardVO getRecommendBoard(int bno) throws Exception;
 
 }

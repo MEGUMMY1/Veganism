@@ -7,8 +7,8 @@
 	<!-- 후기 작성 -->
 	<insert id="write" parameterType="com.board.domain.PostVO">
 		insert into
-			tbl_post(bno, writer, title, content, regDate, rating)
-		values(#{bno}, #{writer}, #{title}, #{content}, NOW(), #{rating})
+			tbl_post(bno, writer, title, content, regDate, rating, userId)
+		values(#{bno}, #{writer}, #{title}, #{content}, NOW(), #{rating}, #{userId})
 	</insert>
 
 	<select id="view" parameterType="com.board.domain.PostVO" resultType="com.board.domain.PostVO">

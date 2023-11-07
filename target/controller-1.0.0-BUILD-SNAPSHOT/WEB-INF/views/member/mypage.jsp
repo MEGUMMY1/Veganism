@@ -142,7 +142,7 @@
       </div>
       <div class="info-level-box">
         <div class="modal-btn-box">
-          <button type="button" id="modal-open" class="veganlevelbtn">비건 단계 ></button>
+          <button type="button" id="modal-open" class="veganlevelbtn">Vegan Level ></button>
         </div>
 
         <div class="popup-wrap" id="popup">
@@ -167,7 +167,7 @@
     </div>
     <div class="writeList">
       <form id="deleteForm" action="/deletePosts" method="post">
-        <button id="deleteButton" type="button">선택 삭제</button>
+        <button type="submit" id="deleteButton">선택 삭제</button>
         <div class="scroll" style="height: 230px; overflow-y: scroll;">
           <table class="table table-striped table-hover">
             <thead>
@@ -230,7 +230,6 @@
     } else {
       alert("선택한 항목이 없습니다. 삭제할 게시물을 선택해 주세요.");
     }
-    return false;
   });
 
   // 스크롤

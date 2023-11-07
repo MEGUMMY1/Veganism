@@ -175,4 +175,10 @@ public class BoardServiceImpl implements BoardService {
 		return dao.selectPostsByUserId(userId);
 	}
 
+	// 추천
+	@Override
+	public BoardVO getRecommendBoard(int bno) throws Exception {
+		return dao.getRecommendBoard(bno);
+	}
+
 }
