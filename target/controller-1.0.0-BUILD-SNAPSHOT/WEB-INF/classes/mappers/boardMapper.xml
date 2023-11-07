@@ -294,5 +294,9 @@
 		ORDER BY bno DESC
 	</select>
 
+	<!-- 추천 게시물 조회 쿼리 -->
+	<select id="getRecommendBoard" resultType="com.board.domain.BoardVO">
+		SELECT * FROM tbl_board WHERE bno = #{bno}
+	</select>
 
 </mapper>

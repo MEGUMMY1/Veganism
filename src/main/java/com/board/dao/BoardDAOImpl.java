@@ -201,4 +201,9 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 
+	//추천
+	@Override
+	public BoardVO getRecommendBoard(int bno) throws Exception {
+		return sql.selectOne(namespace + ".getRecommendBoard" , bno);
+	}
 }

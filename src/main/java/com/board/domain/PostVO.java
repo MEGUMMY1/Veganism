@@ -73,6 +73,16 @@ public class PostVO {
 
     private Double value;
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    private String userId;
+
     public Double getValue() {
         return value;
     }
