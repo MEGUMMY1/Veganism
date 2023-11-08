@@ -30,93 +30,6 @@
 		.card {
 			margin: 5px;
 		}
-		.container_center {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			align-content: space-between;
-		}
-		/*카테고리 css*/
-		.sort-menu{
-			display: flex;
-			list-style: none;
-			padding: 0;
-			overflow: hidden;
-			justify-content: center;
-			align-items: center;
-			margin-bottom: 10px;
-		}
-
-		.horizontal-menu {
-			display: flex;
-			list-style: none;
-			padding: 0;
-			overflow: hidden;
-			justify-content: center;
-			align-items: center;
-			margin-bottom: 10px;
-		}
-
-		.sort-menu li .horizontal-menu li {
-			float: left;
-		}
-
-		.horizontal-menu li:last-child {
-			margin-right: 0;
-		}
-
-		.horizontal-menu li a {
-			font-size: 15px;
-			display: block;
-			color: #3A8C5D;
-			text-align: center;
-			padding: 4px 10px;
-			text-decoration: none;
-			background-color: #ffffff;
-			border: 1px solid #ccc;
-			border-radius: 10px 10px 0px 0px;
-			transition: background-color 0.3s, color 0.3s;
-		}
-
-		.horizontal-menu li a:hover {
-			background-color: #3A8C5D;
-			color: white;
-		}
-
-		.level-menu{
-			display: flex;
-			list-style: none;
-			padding: 0;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.level-menu li a:hover{
-			color: #2E5955;
-			font-weight: bold;
-		}
-
-		.level-menu li a {
-			color: #3A8C5D;
-			font-size: smaller;
-			display: flex;
-			text-align: center;
-			padding: 2px 10px;
-			text-decoration: none;
-			background-color: #ffffff;
-			transition: background-color 0.3s, color 0.3s;
-		}
-		.pagination li.active a {
-			color: #3A8C5D;
-            font-weight: bold;
-		}
-		@media (max-width: 768px){
-			.horizontal-menu li a {
-				font-size: 14px;
-				padding: 2px 5px;
-			}
-		}
-
 	</style>
 </head>
 <body>
@@ -158,6 +71,7 @@
 				<li><a class="btn btn-primary btn-sm m-1" href="${ctx}/board/listPageSearch?page=1&perPageNum=${cri.perPageNum}&searchType=${cri.searchType}&keyword=${cri.keyword}&orderBy=view&category=${cri.category}&level=${cri.level}" onclick="selectSort('view')">조회수순</a></li>
 				<li><a class="btn btn-primary btn-sm m-1" href="${ctx}/board/listPageSearch?page=1&perPageNum=${cri.perPageNum}&searchType=${cri.searchType}&keyword=${cri.keyword}&orderBy=like&category=${cri.category}&level=${cri.level}" onclick="selectSort('like')">좋아요순</a></li>
 				<li><a class="btn btn-primary btn-sm m-1" href="${ctx}/board/listPageSearch?page=1&perPageNum=${cri.perPageNum}&searchType=${cri.searchType}&keyword=${cri.keyword}&orderBy=reply&category=${cri.category}&level=${cri.level}" onclick="selectSort('reply')">댓글순</a></li>
+				<li><a class="btn btn-primary btn-sm m-1" href="${ctx}/board/listPageSearch?page=1&perPageNum=${cri.perPageNum}&searchType=${cri.searchType}&keyword=${cri.keyword}&orderBy=star&category=${cri.category}&level=${cri.level}" onclick="selectSort('star')">별점순</a></li>
 			</ul>
 		</div>
 
