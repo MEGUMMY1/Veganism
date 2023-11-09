@@ -184,6 +184,9 @@
 			<when test="orderBy=='reply'">
 				ORDER BY replyCnt DESC
 			</when>
+			<when test="orderBy=='star'">
+				ORDER BY averagerating DESC
+			</when>
 			<otherwise>
 				ORDER BY bno DESC
 			</otherwise>

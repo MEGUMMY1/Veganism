@@ -38,6 +38,7 @@ def recommend_recipes(user_id):
     #columns로 몇번째 열에 어떤 컬럼이 있는지 명시해주기
     recipes.rename(columns={0: 'bno'}, inplace=True)
     recipes.rename(columns={1: 'title'}, inplace=True)
+    recipes.rename(columns={5: 'viewCnt'}, inplace=True)
     #print(recipes)
 
 
@@ -60,7 +61,7 @@ def recommend_recipes(user_id):
     # 'tbl_board.csv'에서 'bno'와 'title' 열을 선택
     # board_df = pd.read_csv('tbl_board.csv')
     recipes['title'] = recipes['title'].astype(str)
-    recipes = recipes[['bno', 'title']]
+    recipes = recipes[['bno', 'title', 'viewCnt']]
 
     # 'bno'를 기준으로 두 데이터 프레임을 병합
     merged_data = post.merge(recipes, on='bno', how='inner')
@@ -68,7 +69,7 @@ def recommend_recipes(user_id):
 
     # # 필요한 열 선택
     post = merged_data[['title', 'userId']]
-    recipes = recipes[['bno', 'title']]
+    recipes = recipes[['bno', 'title', 'viewCnt']]
 
     def pandas_to_dataset(dataframe, target_column_name):
         dataframe = dataframe.copy()
@@ -141,35 +142,43 @@ def recommend_recipes(user_id):
     # 기존에 작성한 게시글의 제목을 가져옵니다.
     user_titles = merged_data[merged_data['userId'] == userId]['title'].unique()
 
-    # TensorFlow 데이터셋에서 사용자가 이미 작성한 제목을 필터링합니다.
-    recipes_dataset = recipes_dataset.filter(
-        lambda title: tf.math.logical_not(tf.math.reduce_any(tf.math.equal(title, user_titles)))
-    )
+    if len(user_titles) == 0:
+        # 추천할 게시물이 없는 경우, 인기 있는 게시물을 추천
+        num_recommendations = 5
+        popular_recipes = recipes.sort_values(by='viewCnt', ascending=False)
+        top_recommendations = popular_recipes.head(num_recommendations)
+        bno_list = top_recommendations['bno'].tolist()
 
-    # BruteForce 인덱스를 생성하고 데이터셋으로부터 인덱싱합니다.
-    index = tfrs.layers.factorized_top_k.BruteForce(model.user_model)
-    index.index_from_dataset(
-        recipes_dataset.batch(100).map(lambda title: (title, model.recipes_model(title)))
-    )
+    else:
+        # TensorFlow 데이터셋에서 사용자가 이미 작성한 제목을 필터링합니다.
+        recipes_dataset = recipes_dataset.filter(
+            lambda title: tf.math.logical_not(tf.math.reduce_any(tf.math.equal(title, user_titles)))
+        )
 
-    # print("Debug: Something important happened here")
-    # 사용자에게 추천합니다. 중복을 피하기 위해 루프를 사용합니다.
-    recommended_titles = set()
-    user_id = np.array([userId], dtype=object)
-    i = 0
-    while len(recommended_titles) < 5:  # 4개의 유니크한 추천을 원합니다.
-        _, titles = index(user_id)
-        for title in titles[0, i:i+1]:  # 다음 추천을 가져옵니다.
-            title_text = title.numpy().decode('utf-8')
-            if title_text not in recommended_titles:  # 추천이 유니크한지 확인합니다.
-                recommended_titles.add(title_text)
-            if len(recommended_titles) == 5:  # 원하는 수의 추천을 얻었다면 루프를 종료합니다.
-                break
-        i += 1  # 다음 추천을 위해 인덱스를 증가시킵니다.
+        # BruteForce 인덱스를 생성하고 데이터셋으로부터 인덱싱합니다.
+        index = tfrs.layers.factorized_top_k.BruteForce(model.user_model)
+        index.index_from_dataset(
+            recipes_dataset.batch(100).map(lambda title: (title, model.recipes_model(title)))
+        )
 
-    bno_dict = dict(zip(recipes['title'], recipes['bno']))
+        # print("Debug: Something important happened here")
+        # 사용자에게 추천합니다. 중복을 피하기 위해 루프를 사용합니다.
+        recommended_titles = set()
+        user_id = np.array([userId], dtype=object)
+        i = 0
+        while len(recommended_titles) < 5:  # 4개의 유니크한 추천을 원합니다.
+            _, titles = index(user_id)
+            for title in titles[0, i:i+1]:  # 다음 추천을 가져옵니다.
+                title_text = title.numpy().decode('utf-8')
+                if title_text not in recommended_titles:  # 추천이 유니크한지 확인합니다.
+                    recommended_titles.add(title_text)
+                if len(recommended_titles) == 5:  # 원하는 수의 추천을 얻었다면 루프를 종료합니다.
+                    break
+            i += 1  # 다음 추천을 위해 인덱스를 증가시킵니다.
 
-    bno_list = [bno_dict.get(title, None) for title in recommended_titles]
+        bno_dict = dict(zip(recipes['title'], recipes['bno']))
+
+        bno_list = [bno_dict.get(title, None) for title in recommended_titles]
 
     # 'bno' 리스트 출력
     for bno in bno_list:
