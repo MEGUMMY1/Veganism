@@ -36,77 +36,78 @@
 </div>
 <div class="container px-4 px-lg-5">
 	<div class="innerOuter" style="margin-top:50px; padding-left:50px">
-			<div class="flex-box">
-				<h2><b>게시글 수정</b></h2>
-				<div class="content-writer">
-					<div class="form-group">
-						<label for="content-writer">작성자</label>
-						<input type="text" name="writer" id="content-writer" value="${view.writer}  " readonly="readonly"/>
-						<select name="category" id="categorySelect" class="form-select-sm" required onchange="updateHiddenCategory(this)">
-							<option value="" disabled selected>카테고리를 선택하시오</option>
-							<option value="한식">한식</option>
-							<option value="분식">분식</option>
-							<option value="양식">양식</option>
-							<option value="중식">중식</option>
-							<option value="일식">일식</option>
-							<option value="간식">간식</option>
-							<option value="기타">기타</option>
-						</select>
-						<select name="level" id="levelSelect" class="form-select-sm" required onchange="updateHiddenLevel(this)">
-							<option value="" disabled selected>비건 단계를 선택하시오</option>
-							<option value="Flexitarian">1.Flexitarian</option>
-							<option value="Pollo">2.Pollo</option>
-							<option value="Pesco">3.Pesco</option>
-							<option value="LactoOvo">4.Lacto-Ovo</option>
-							<option value="Ovo">5.Ovo</option>
-							<option value="Lacto">6.Lacto</option>
-							<option value="Vegan">7.Vegan</option>
-						</select>
-					</div>
+		<div class="flex-box">
+			<h2><b>게시글 수정</b></h2>
+			<div class="content-writer">
+				<div class="form-group">
+					<label for="content-writer">작성자</label>
+					<input type="text" name="writer" id="content-writer" value="${view.writer}  " readonly="readonly"/>
+					<select name="category" id="categorySelect" class="form-select-sm" required onchange="updateHiddenCategory(this)">
+						<option value="" disabled selected>카테고리를 선택하시오</option>
+						<option value="한식" ${view.category == '한식' ? 'selected' : ''}>한식</option>
+						<option value="분식" ${view.category == '분식' ? 'selected' : ''}>분식</option>
+						<option value="양식" ${view.category == '양식' ? 'selected' : ''}>양식</option>
+						<option value="중식" ${view.category == '중식' ? 'selected' : ''}>중식</option>
+						<option value="일식" ${view.category == '일식' ? 'selected' : ''}>일식</option>
+						<option value="간식" ${view.category == '간식' ? 'selected' : ''}>간식</option>
+						<option value="기타" ${view.category == '기타' ? 'selected' : ''}>기타</option>
+					</select>
+					<select name="level" id="levelSelect" class="form-select-sm" required onchange="updateHiddenLevel(this)">
+						<option value="" disabled selected>비건 단계를 선택하시오</option>
+						<option value="Flexitarian" ${view.level == 'Flexitarian' ? 'selected' : ''}>1. Flexitarian</option>
+						<option value="Pollo" ${view.level == 'Pollo' ? 'selected' : ''}>2. Pollo</option>
+						<option value="Pesco" ${view.level == 'Pesco' ? 'selected' : ''}>3. Pesco</option>
+						<option value="LactoOvo" ${view.level == 'LactoOvo' ? 'selected' : ''}>4. Lacto-Ovo</option>
+						<option value="Ovo" ${view.level == 'Ovo' ? 'selected' : ''}>5. Ovo</option>
+						<option value="Lacto" ${view.level == 'Lacto' ? 'selected' : ''}>6. Lacto</option>
+						<option value="Vegan" ${view.level == 'Vegan' ? 'selected' : ''}>7. Vegan</option>
+
+					</select>
 				</div>
+			</div>
 
-				<div class="content-header">
-					<div class="form-group">
-						<label for="content-title">제목</label>
-						<input type="text" class="form-control" name="title" id="content-title"  value="${view.title}" required/><br />
-					</div>
+			<div class="content-header">
+				<div class="form-group">
+					<label for="content-title">제목</label>
+					<input type="text" class="form-control" name="title" id="content-title"  value="${view.title}" required/><br />
 				</div>
+			</div>
 
-				<div class="content-body">
-					<div class="form-group">
-						<%--@declare id="comment"--%>
-						<label for="comment"><b>내용</b></label>
-						<div id="editor"> ${view.content} </div>
-						<div id="editorContents"></div>
+			<div class="content-body">
+				<div class="form-group">
+					<%--@declare id="comment"--%>
+					<label for="comment"><b>내용</b></label>
+					<div id="editor"> ${view.content} </div>
+					<div id="editorContents"></div>
 
-					</div>
 				</div>
+			</div>
 
-				<!--토스트 UI-->
-				<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-				<script src="https://uicdn.toast.com/editor/latest/i18n/ko-kr.min.js"></script>
+			<!--토스트 UI-->
+			<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+			<script src="https://uicdn.toast.com/editor/latest/i18n/ko-kr.min.js"></script>
 
-				<div class="content-footer">
-					<div class="container-fluid" style="background-color: rgba(224, 224, 224, 0.3);">
-						Fooriend에 멋진 글을 작성해주셔서 감사드립니다 🧡<br>
-						청결한 게시판을 위해
-						욕설이나 비방, 모욕, 선정성이 존재하는 사진이나 게시글은 업로드하지 말아주세요.
-					</div>
+			<div class="content-footer">
+				<div class="container-fluid" style="background-color: rgba(224, 224, 224, 0.3);">
+					Fooriend에 멋진 글을 작성해주셔서 감사드립니다 🧡<br>
+					청결한 게시판을 위해
+					욕설이나 비방, 모욕, 선정성이 존재하는 사진이나 게시글은 업로드하지 말아주세요.
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 <br><br>
-	<div class="container px-4 px-lg-5">
-		<div style="display: flex; justify-content: space-between;  margin-bottom:50px; margin-bottom:50px">
-			<div>
-				<button type="reset" class="btn btn-sm btn-primary" onclick="location.href='listPageSearch?page=1&perPageNum=12&searchType=&keyword=&sort='">취소</button>
-			</div>
-			<div class="submit-btn" id="colUpdatebtn">
-				<button type="submit" class="btn btn-sm btn-primary" onclick="openThumbnailModal();" disabled>수정</button>
-			</div>
+<div class="container px-4 px-lg-5">
+	<div style="display: flex; justify-content: space-between;  margin-bottom:50px; margin-bottom:50px">
+		<div>
+			<button type="reset" class="btn btn-sm btn-primary" onclick="location.href='listPageSearch?page=1&perPageNum=12&searchType=&keyword=&sort='">취소</button>
+		</div>
+		<div class="submit-btn" id="colUpdatebtn">
+			<button type="submit" class="btn btn-sm btn-primary" onclick="openThumbnailModal();" disabled>수정</button>
 		</div>
 	</div>
+</div>
 </div>
 <script>
 	// 카테고리 관련 함수
